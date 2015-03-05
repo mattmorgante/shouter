@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   #monbon gem 
   resource :dashboard, only: [:show]
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show]
-  resources :shouts, only: [:create, :show]
-  
+  resources :users, only: [:new, :create, :show] do 
+    post 'follow' => 'following_relationships#create'
+  end 
+  resources :shouts, only: [:show]
+  resources :text_shouts, only: [:create]
+  resources :photo_shouts, only: [:create]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
